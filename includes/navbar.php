@@ -1,59 +1,47 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container">
+<!-- TOP BAR -->
+<header class="top-bar">
+    <a href="/library_project/index.php" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-book-open"></i></div>
+        <span class="logo-text">E-Library</span>
+    </a>
 
-        <a class="navbar-brand gradient-text" href="/library_project/index.php">
-            📚 E‑Library
-        </a>
+    <div class="top-bar-actions">
+        <button class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-            <span class="navbar-toggler-icon"></span>
+        <button class="icon-btn" id="themeToggle">
+            <i class="fa-solid fa-moon"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="nav">
+        <?php if(isset($_SESSION['user_id'])): ?>
 
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Books</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Browse</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-            </ul>
+            <a href="/library_project/dashboard/dashboard.php" class="btn-login">
+                Dashboard
+            </a>
 
-            <ul class="navbar-nav">
+            <a href="/auth/register.php" class="btn-signup">
+                Logout
+            </a>
 
-                <?php if(isset($_SESSION['user_id'])): ?>
+        <?php else: ?>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/library_project/dashboard/dashboard.php">
-                            Dashboard
-                        </a>
-                    </li>
+            <a href="/library_project/auth/login.php" class="btn-login">
+                Log In
+            </a>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="/library_project/auth/logout.php">
-                            Logout
-                        </a>
-                    </li>
+            <a href="/library_project/auth/register.php" class="btn-signup">
+                Sign Up
+            </a>
 
-                <?php else: ?>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/library_project/auth/login.php">
-                            Log In
-                        </a>
-                    </li>
-
-                    <li class="nav-item ms-2">
-                        <a class="btn btn-gradient" href="/library_project/auth/register.php">
-                            Sign Up
-                        </a>
-                    </li>
-
-                <?php endif; ?>
-
-            </ul>
-
-        </div>
+        <?php endif; ?>
     </div>
+</header>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+    <a href="/library_project/index.php" class="active">Home</a>
+    <a href="/library_project/books/browse.php">Books</a>
+    <a href="#">Browse</a>
+    <a href="#">Categories</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
 </nav>

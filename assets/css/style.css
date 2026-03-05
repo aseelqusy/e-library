@@ -1,0 +1,307 @@
+:root {
+    --purple: #7c3aed;
+    --pink: #ec4899;
+    --light-bg: #f5f0eb;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #fff;
+    color: #111;
+}
+
+/* ── TOP BAR ── */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 48px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 18px;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--purple), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.top-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #555;
+    cursor: pointer;
+    padding: 4px 6px;
+    transition: color 0.2s;
+}
+.icon-btn:hover { color: var(--purple); }
+
+.btn-login {
+    background: none;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    color: #111;
+    cursor: pointer;
+    padding: 6px 12px;
+    transition: color 0.2s;
+}
+.btn-login:hover { color: var(--purple); }
+
+.btn-signup {
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 22px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.btn-signup:hover { opacity: 0.88; }
+
+/* ── NAV BAR ── */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    padding: 12px 48px;
+    border-bottom: 1px solid #eee;
+}
+
+.main-nav a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: #444;
+    transition: color 0.2s;
+}
+.main-nav a:hover { color: var(--purple); }
+.main-nav a.active {
+    color: var(--purple);
+    font-weight: 700;
+}
+
+/* ── HERO ── */
+.hero {
+    background: var(--light-bg);
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ede9fe;
+    border: 1px solid #c4b5fd;
+    color: var(--purple);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 32px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #111;
+    max-width: 720px;
+}
+
+.hero h1 .gradient-text {
+    background: linear-gradient(to right, var(--purple), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    margin-top: 24px;
+    font-size: 18px;
+    color: #666;
+    max-width: 540px;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-browse {
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: opacity 0.2s, transform 0.2s;
+}
+.btn-browse:hover { opacity: 0.88; transform: translateY(-2px); }
+
+.btn-learn {
+    background: #fff;
+    color: var(--purple);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+}
+.btn-learn:hover { border-color: var(--purple); transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer {
+    background: #fff;
+    border-top: 1px solid #eee;
+    padding: 60px 48px 24px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #eee;
+}
+
+.footer-brand p {
+    margin-top: 16px;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 320px;
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--purple); }
+
+.contact-email {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: #f1f1f1;
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    color: #555;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.social-btn:hover { background: var(--purple); color: #fff; }
+
+.footer-bottom {
+    padding-top: 24px;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+}
+
+.footer-bottom .heart { color: #e53e3e; }
+
+/* ── DARK MODE ── */
+body.dark {
+    background: #0f0f0f;
+    color: #eee;
+}
+body.dark .top-bar,
+body.dark .main-nav,
+body.dark footer {
+    background: #111;
+    border-color: #222;
+}
+body.dark .hero { background: #1a1a2e; }
+body.dark .hero h1 { color: #f0f0f0; }
+body.dark .hero p { color: #aaa; }
+body.dark .main-nav a { color: #bbb; }
+body.dark .btn-login { color: #eee; }
+body.dark .btn-learn { background: #1a1a1a; border-color: #333; color: #c4b5fd; }
+body.dark .footer-brand p,
+body.dark .footer-col ul li a,
+body.dark .contact-email { color: #aaa; }
+body.dark .social-btn { background: #222; color: #aaa; }
+body.dark .footer-col h4,
+body.dark .footer-bottom { color: #ddd; }
+body.dark .icon-btn { color: #aaa; }
+
+@media (max-width: 768px) {
+    .top-bar, .main-nav { padding: 12px 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    footer { padding: 40px 20px 20px; }
+}
