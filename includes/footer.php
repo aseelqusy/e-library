@@ -15,10 +15,12 @@
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Books</a></li>
-                <li><a href="#">Browse</a></li>
-                <li><a href="#">Categories</a></li>
+                <li><a href="/library_project/index.php">Home</a></li>
+                <li><a href="/library_project/books/brows.php">Books</a></li>
+                <li><a href="/library_project/books/search.php">Browse</a></li>
+                <li><a href="/library_project/pages/categories.php">Categories</a></li>
+                <li><a href="/library_project/pages/about.php">About</a></li>
+                <li><a href="/library_project/pages/contact.php">Contact</a></li>
             </ul>
         </div>
 

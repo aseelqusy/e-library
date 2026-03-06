@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";          // put your XAMPP MySQL password if you set one
-$db   = "e_library"; // change to your database name
+$db   = "library-db"; // database name
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 

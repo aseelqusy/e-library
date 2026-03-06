@@ -1,3 +1,67 @@
+<?php
+session_start();
+
+// Redirect if already logged in
+if (isset($_SESSION['user_id'])) {
+    header('Location: ../dashboard/dashboard.php');
+    exit();
+}
+
+$error_message = '';
+
+// Handle login form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    require_once '../includes/db.php';
+
+    $email_or_username = trim($_POST['email']);
+    $password = $_POST['password'];
+
+    if (empty($email_or_username) || empty($password)) {
+        $error_message = 'Please enter both email/username and password';
+    } else {
+        // Check if input is email or username
+        $query = "SELECT * FROM users WHERE email = ? OR username = ?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "ss", $email_or_username, $email_or_username);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) == 1) {
+            $user = mysqli_fetch_assoc($result);
+
+            // Verify password (support both hashed and plain text for demo)
+            $password_verified = false;
+            if (password_verify($password, $user['password'])) {
+                $password_verified = true;
+            } elseif ($password === $user['password']) {
+                $password_verified = true;
+            }
+
+            if ($password_verified) {
+                // Login successful
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
+
+                // Redirect based on role
+                if ($user['role'] == 'admin') {
+                    header('Location: ../dashboard/admin/index.php');
+                } else {
+                    header('Location: ../dashboard/dashboard.php');
+                }
+                exit();
+            } else {
+                $error_message = 'Invalid password';
+            }
+        } else {
+            $error_message = 'No account found with that email or username';
+        }
+
+        mysqli_close($conn);
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,6 +192,15 @@
         </div>
 
         <div class="or-divider"><span>or log in with email</span></div>
+
+        <?php if ($error_message): ?>
+        <div style="padding: 14px 18px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 10px; margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 18px;">⚠️</span>
+                <span style="font-size: 14px; color: #b91c1c; font-weight: 500;"><?php echo htmlspecialchars($error_message); ?></span>
+            </div>
+        </div>
+        <?php endif; ?>
 
         <!-- Login Form -->
         <form id="loginForm" method="POST" action="">

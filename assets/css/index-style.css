@@ -42,19 +42,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 48px;
+    padding: 12px 48px;
     background: var(--white);
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
-    gap: 20px;
+    gap: 16px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
     flex-shrink: 0;
 }
@@ -63,7 +63,7 @@ body {
     width: 40px;
     height: 40px;
     background: linear-gradient(135deg, var(--purple), var(--pink));
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,7 +75,7 @@ body {
 .logo-text {
     font-family: 'Sora', sans-serif;
     font-size: 22px;
-    font-weight: 800;
+    font-weight: 700;
     background: linear-gradient(to right, var(--purple), var(--pink));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -85,7 +85,7 @@ body {
 .top-bar-actions {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
     margin-left: auto;
 }
 
@@ -93,10 +93,10 @@ body {
     background: none;
     border: none;
     font-size: 18px;
-    color: var(--muted);
+    color: #555;
     cursor: pointer;
-    padding: 6px 8px;
-    transition: color 0.3s ease;
+    padding: 4px 6px;
+    transition: color 0.2s;
     border-radius: 8px;
 }
 
@@ -111,9 +111,9 @@ body {
     font-weight: 600;
     font-size: 15px;
     cursor: pointer;
-    padding: 8px 16px;
+    padding: 6px 12px;
     border-radius: 8px;
-    transition: color 0.3s ease;
+    transition: color 0.2s;
     text-decoration: none;
 }
 
@@ -127,17 +127,35 @@ body {
     border: none;
     font-weight: 600;
     font-size: 15px;
-    padding: 10px 24px;
+    padding: 8px 22px;
     border-radius: 50px;
     cursor: pointer;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.2s;
     text-decoration: none;
     display: inline-block;
 }
 
 .btn-signup:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
+    opacity: 0.88;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #444;
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.2s;
+}
+
+.mobile-menu-toggle:hover {
+    color: var(--purple);
+}
+
+.mobile-menu-toggle i {
+    display: block;
 }
 
 /* ═══════════════════════════════════════════════════════════════════ */
@@ -147,7 +165,7 @@ body {
 .main-nav {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 36px;
     padding: 12px 48px;
     background: var(--white);
     border-bottom: 1px solid var(--border);
@@ -157,8 +175,8 @@ body {
     text-decoration: none;
     font-size: 15px;
     font-weight: 500;
-    color: var(--muted);
-    transition: color 0.3s ease;
+    color: #444;
+    transition: color 0.2s;
     position: relative;
 }
 
@@ -180,6 +198,11 @@ body {
     height: 3px;
     background: linear-gradient(to right, var(--purple), var(--pink));
     border-radius: 2px;
+}
+
+/* Mobile auth links - hidden on desktop */
+.mobile-auth-links {
+    display: none;
 }
 
 /* ═══════════════════════════════════════════════════════════════════ */
@@ -960,30 +983,117 @@ footer {
     }
 
     .top-bar-actions {
-        gap: 12px;
-        margin-left: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        align-items: center;
     }
 
+    /* Hide login/signup buttons on mobile to save space */
     .btn-login,
     .btn-signup {
-        font-size: 14px;
-        padding: 8px 16px;
+        display: none;
     }
 
     .icon-btn {
         font-size: 16px;
     }
 
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        order: 10;
+        font-size: 24px;
+        padding: 8px 12px;
+    }
+
     .main-nav {
-        padding: 12px 20px;
-        gap: 20px;
-        overflow-x: auto;
-        flex-wrap: nowrap;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(10px);
+        z-index: 9999;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        padding: 40px 20px;
+        border: none;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .main-nav.active {
+        display: flex;
     }
 
     .main-nav a {
-        font-size: 14px;
-        white-space: nowrap;
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 600;
+        color: white !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: block;
+        cursor: pointer;
+        white-space: normal;
+    }
+
+    .main-nav a::after {
+        display: none !important;
+    }
+
+    .main-nav a:last-child {
+        border-bottom: none;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+        color: var(--pink) !important;
+        background: rgba(124, 58, 237, 0.2);
+    }
+
+    /* Show mobile auth links in mobile menu */
+    .mobile-auth-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+        gap: 0;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .mobile-auth-link {
+        width: 100%;
+        padding: 18px 20px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: white !important;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-auth-link:last-child {
+        border-bottom: none;
+    }
+
+    .mobile-auth-link:hover {
+        background: rgba(124, 58, 237, 0.3);
     }
 
     .hero-section {

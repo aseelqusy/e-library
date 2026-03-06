@@ -6,7 +6,9 @@
     </a>
 
     <div class="top-bar-actions">
-        <button class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <a href="/library_project/books/search.php" class="icon-btn" title="Search Books">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
 
         <button class="icon-btn" id="themeToggle">
             <i class="fa-solid fa-moon"></i>
@@ -18,7 +20,7 @@
                 Dashboard
             </a>
 
-            <a href="/auth/register.php" class="btn-signup">
+            <a href="/library_project/auth/logout.php" class="btn-signup">
                 Logout
             </a>
 
@@ -33,15 +35,31 @@
             </a>
 
         <?php endif; ?>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </div>
 </header>
 
 <!-- MAIN NAV -->
-<nav class="main-nav">
+<nav class="main-nav" id="mainNav">
     <a href="/library_project/index.php" class="active">Home</a>
-    <a href="/library_project/books/browse.php">Books</a>
-    <a href="#">Browse</a>
-    <a href="#">Categories</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+    <a href="/library_project/books/brows.php">Books</a>
+    <a href="/library_project/books/search.php">Browse</a>
+    <a href="/library_project/pages/categories.php">Categories</a>
+    <a href="/library_project/pages/about.php">About</a>
+    <a href="/library_project/pages/contact.php">Contact</a>
+
+    <!-- Mobile-only auth links -->
+    <div class="mobile-auth-links">
+        <?php if(isset($_SESSION['user_id'])): ?>
+            <a href="/library_project/dashboard/dashboard.php" class="mobile-auth-link">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="/library_project/auth/logout.php" class="mobile-auth-link" style="color: #ef4444;">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        <?php endif; ?>
+    </div>
 </nav>

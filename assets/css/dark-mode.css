@@ -126,8 +126,18 @@
     color: #7c3aed;
 }
 
+:root[data-theme="dark"] .main-nav {
+    background: rgba(15, 15, 15, 0.98);
+}
+
 :root[data-theme="dark"] .main-nav a {
     border-bottom-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .main-nav a:hover,
+:root[data-theme="dark"] .main-nav a.active {
+    color: #a78bfa;
 }
 
 /* Scrollbar */
@@ -145,5 +155,142 @@
 }
 
 :root[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: #7c3aed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/*                      BOOKS & CARDS DARK MODE                        */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+:root[data-theme="dark"] .book-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .book-card:hover {
+    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.3);
+}
+
+:root[data-theme="dark"] .book-card-image {
+    background: linear-gradient(135deg, #1a1a1a 0%, #242424 100%);
+}
+
+:root[data-theme="dark"] .book-favorite-btn {
+    background: rgba(26, 26, 26, 0.95);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .book-title,
+:root[data-theme="dark"] .book-details-title,
+:root[data-theme="dark"] .page-title,
+:root[data-theme="dark"] .section-title,
+:root[data-theme="dark"] .dashboard-section-title {
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .filters-section,
+:root[data-theme="dark"] .stat-card,
+:root[data-theme="dark"] .activity-card,
+:root[data-theme="dark"] .profile-card,
+:root[data-theme="dark"] .borrowed-item,
+:root[data-theme="dark"] .review-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .filter-header h3,
+:root[data-theme="dark"] .filter-label,
+:root[data-theme="dark"] .stat-value,
+:root[data-theme="dark"] .borrowed-item-title,
+:root[data-theme="dark"] .activity-title,
+:root[data-theme="dark"] .info-label,
+:root[data-theme="dark"] .date-label,
+:root[data-theme="dark"] .review-user-info h4,
+:root[data-theme="dark"] .sidebar-username,
+:root[data-theme="dark"] .quick-action-text h4,
+:root[data-theme="dark"] .form-label {
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .filter-chip {
+    background: var(--input-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .filter-chip:hover {
+    background: rgba(124, 58, 237, 0.2);
+}
+
+:root[data-theme="dark"] .dashboard-sidebar {
+    background: var(--card-bg);
+    border-right-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .sidebar-user {
+    border-bottom-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .sidebar-nav-link {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .sidebar-nav-link:hover {
+    background: rgba(124, 58, 237, 0.1);
+    color: #a78bfa;
+}
+
+:root[data-theme="dark"] .sidebar-nav-link.active {
+    background: rgba(124, 58, 237, 0.15);
+    color: #a78bfa;
+}
+
+:root[data-theme="dark"] .dashboard-main {
+    background: var(--bg-primary);
+}
+
+:root[data-theme="dark"] .activity-item {
+    background: var(--input-bg);
+}
+
+:root[data-theme="dark"] .quick-action-btn {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .quick-action-btn:hover {
+    background: rgba(124, 58, 237, 0.15);
+}
+
+:root[data-theme="dark"] .form-input {
+    background: var(--input-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .btn-cancel {
+    background: var(--input-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .btn-cancel:hover {
+    background: #2a2a2a;
+}
+
+:root[data-theme="dark"] .book-details-info {
+    background: var(--input-bg);
+}
+
+:root[data-theme="dark"] .info-row {
+    border-bottom-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .btn-secondary {
+    background: var(--card-bg);
+    border-color: #7c3aed;
+}
+
+:root[data-theme="dark"] .btn-secondary:hover {
     background: #7c3aed;
 }

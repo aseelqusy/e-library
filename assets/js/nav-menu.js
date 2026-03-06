@@ -10,9 +10,11 @@ if (mobileMenuToggle && mainNav) {
             if (mainNav.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden'; // Prevent body scroll
             } else {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
+                document.body.style.overflow = ''; // Restore body scroll
             }
         }
     });
@@ -28,8 +30,35 @@ if (mobileMenuToggle && mainNav) {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
                 }
+                document.body.style.overflow = '';
             }
         });
+    });
+
+    // Close menu when clicking outside (on the overlay)
+    mainNav.addEventListener('click', (e) => {
+        if (e.target === mainNav) {
+            mainNav.classList.remove('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+            document.body.style.overflow = '';
+        }
     });
 
     // Reset menu state when switching back to desktop.
@@ -41,6 +70,7 @@ if (mobileMenuToggle && mainNav) {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
+            document.body.style.overflow = '';
         }
     });
 }

@@ -1,0 +1,114 @@
+/* ═══════════════════════════════════════════════════════════════════ */
+/*                      UTILITY CLASSES                                */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+/* Text utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: var(--purple) !important; }
+.text-muted { color: var(--muted) !important; }
+.text-white { color: white !important; }
+.text-danger { color: #ef4444 !important; }
+.text-success { color: #22c55e !important; }
+
+/* Spacing utilities */
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+.p-5 { padding: 3rem; }
+
+/* Display utilities */
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+/* Flex utilities */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-column { flex-direction: column; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 1rem; }
+.gap-4 { gap: 1.5rem; }
+
+/* Width utilities */
+.w-full { width: 100%; }
+.w-auto { width: auto; }
+.w-50 { width: 50%; }
+
+/* Border utilities */
+.rounded { border-radius: 0.5rem; }
+.rounded-lg { border-radius: 1rem; }
+.rounded-full { border-radius: 9999px; }
+
+/* Shadow utilities */
+.shadow-sm { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+.shadow { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+.shadow-lg { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); }
+
+/* Font weight */
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/*                      MOBILE UTILITIES                               */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .hide-mobile { display: none !important; }
+    .show-mobile { display: block !important; }
+}
+
+@media (min-width: 769px) {
+    .hide-desktop { display: none !important; }
+    .show-desktop { display: block !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/*                      PRINT STYLES                                   */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+@media print {
+    .no-print { display: none !important; }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .book-card,
+    .profile-card,
+    .borrowed-item {
+        break-inside: avoid;
+    }
+}
+
