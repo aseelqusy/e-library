@@ -1,0 +1,260 @@
+/* Dark Mode Styles - Auth Pages (matched to index dark palette) */
+
+:root[data-theme="dark"] {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #111;
+    --text-primary: #eee;
+    --text-secondary: #aaa;
+    --border-color: #222;
+    --card-bg: #111;
+    --input-bg: #1a1a1a;
+}
+
+/* Auth Pages General */
+:root[data-theme="dark"] body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .right-panel {
+    background: #111 !important;
+    color: #eee;
+}
+
+/* Match index dark containers exactly */
+:root[data-theme="dark"] .left-panel {
+    background: #111 !important;
+}
+
+/* Keep left panel visually consistent but less bright in dark mode */
+:root[data-theme="dark"] .left-panel {
+    background: linear-gradient(145deg, #17102a 0%, #21123f 40%, #2c1650 65%, #3a1a58 100%);
+}
+
+:root[data-theme="dark"] .blob {
+    opacity: 0.15;
+}
+
+:root[data-theme="dark"] .left-panel::before {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+}
+
+:root[data-theme="dark"] .form-top h1 {
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .form-top p,
+:root[data-theme="dark"] .form-top .back-link {
+    color: var(--text-secondary);
+}
+
+/* Form Elements */
+:root[data-theme="dark"] .field label {
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .input-wrap input,
+:root[data-theme="dark"] .input-wrap select,
+:root[data-theme="dark"] input[type="date"] {
+    background: #1a1a1a !important;
+    border-color: #222 !important;
+    color: #eee !important;
+}
+
+:root[data-theme="dark"] .input-wrap input::placeholder,
+:root[data-theme="dark"] .input-wrap select {
+    color: #aaa !important;
+}
+
+:root[data-theme="dark"] .input-wrap input:focus,
+:root[data-theme="dark"] .input-wrap select:focus,
+:root[data-theme="dark"] input[type="date"]:focus {
+    background: #202020 !important;
+    border-color: #7c3aed !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2) !important;
+}
+
+:root[data-theme="dark"] .input-wrap .i-icon,
+:root[data-theme="dark"] .input-wrap .toggle-pass {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .input-wrap .toggle-pass:hover {
+    color: #7c3aed;
+}
+
+/* Buttons */
+:root[data-theme="dark"] .social-btn {
+    background: var(--input-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .social-btn:hover {
+    background: #222;
+    border-color: #7c3aed;
+}
+
+:root[data-theme="dark"] .btn-back {
+    background: var(--input-bg);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .btn-back:hover {
+    border-color: #7c3aed;
+    color: #7c3aed;
+}
+
+/* Dividers */
+:root[data-theme="dark"] .or-divider {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .or-divider::before,
+:root[data-theme="dark"] .or-divider::after {
+    background: var(--border-color);
+}
+
+/* Custom Checkbox */
+:root[data-theme="dark"] .custom-check {
+    border-color: var(--border-color);
+    background: var(--input-bg);
+}
+
+:root[data-theme="dark"] .custom-check.checked {
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    border-color: transparent;
+}
+
+/* Text Elements */
+:root[data-theme="dark"] .terms-text,
+:root[data-theme="dark"] .login-link {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .terms-text a,
+:root[data-theme="dark"] .login-link a {
+    color: #c4b5fd;
+}
+
+:root[data-theme="dark"] .terms-text a:hover,
+:root[data-theme="dark"] .login-link a:hover {
+    color: #7c3aed;
+}
+
+/* Progress Steps */
+:root[data-theme="dark"] .step-circle {
+    background: var(--input-bg);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .step-circle.active {
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    border-color: transparent;
+    color: white;
+}
+
+:root[data-theme="dark"] .step-circle.done {
+    background: #10b981;
+    border-color: transparent;
+    color: white;
+}
+
+:root[data-theme="dark"] .step-line {
+    background: var(--border-color);
+}
+
+:root[data-theme="dark"] .step-line.done {
+    background: #10b981;
+}
+
+/* Password Strength */
+:root[data-theme="dark"] .strength-seg {
+    background: var(--border-color);
+}
+
+:root[data-theme="dark"] .strength-label {
+    color: var(--text-secondary);
+}
+
+/* Quick Tip Box */
+:root[data-theme="dark"] .quick-tip-box,
+:root[data-theme="dark"] .quick-tip-container {
+    background: rgba(124, 58, 237, 0.08) !important;
+    border-color: rgba(124, 58, 237, 0.18) !important;
+}
+
+:root[data-theme="dark"] .quick-tip-title,
+:root[data-theme="dark"] .quick-tip-title-inline {
+    color: #c4b5fd;
+}
+
+:root[data-theme="dark"] .quick-tip-text,
+:root[data-theme="dark"] .quick-tip-message {
+    color: var(--text-secondary);
+}
+
+/* Success Screen */
+:root[data-theme="dark"] .success-screen h2 {
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .success-screen p {
+    color: var(--text-secondary);
+}
+
+/* Auth Footer */
+:root[data-theme="dark"] .auth-footer-wrapper,
+:root[data-theme="dark"] .auth-footer {
+    background: var(--bg-secondary);
+    border-top-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .auth-footer-grid {
+    border-bottom-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .auth-footer-brand p,
+:root[data-theme="dark"] .auth-footer-contact-email,
+:root[data-theme="dark"] .auth-footer-bottom,
+:root[data-theme="dark"] .auth-footer-col ul li a {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .auth-footer-col h4 {
+    color: #ddd;
+}
+
+:root[data-theme="dark"] .auth-footer-col ul li a:hover {
+    color: #7c3aed;
+}
+
+:root[data-theme="dark"] .auth-footer-social-btn {
+    background: #222;
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .auth-footer-social-btn:hover {
+    background: #7c3aed;
+    color: white;
+}
+
+/* Scrollbar for Auth Pages */
+:root[data-theme="dark"] .right-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+:root[data-theme="dark"] .right-panel::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+:root[data-theme="dark"] .right-panel::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 4px;
+}
+
+:root[data-theme="dark"] .right-panel::-webkit-scrollbar-thumb:hover {
+    background: #7c3aed;
+}

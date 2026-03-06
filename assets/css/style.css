@@ -12,7 +12,7 @@ body {
     color: #111;
 }
 
-/* ── TOP BAR ── */
+/* TOP BAR */
 .top-bar {
     display: flex;
     align-items: center;
@@ -30,11 +30,15 @@ body {
 }
 
 .logo-icon {
-    width: 40px; height: 40px;
+    width: 40px;
+    height: 40px;
     background: linear-gradient(135deg, var(--purple), var(--pink));
     border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
 }
 
 .logo-text {
@@ -87,7 +91,7 @@ body {
 }
 .btn-signup:hover { opacity: 0.88; }
 
-/* ── NAV BAR ── */
+/* NAV BAR */
 .main-nav {
     display: flex;
     align-items: center;
@@ -109,7 +113,11 @@ body {
     font-weight: 700;
 }
 
-/* ── HERO ── */
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* HERO */
 .hero {
     background: var(--light-bg);
     min-height: 560px;
@@ -194,7 +202,7 @@ body {
 }
 .btn-learn:hover { border-color: var(--purple); transform: translateY(-2px); }
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer {
     background: #fff;
     border-top: 1px solid #eee;
@@ -254,11 +262,14 @@ footer {
 }
 
 .social-btn {
-    width: 40px; height: 40px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: #f1f1f1;
     border: none;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #555;
     font-size: 16px;
     cursor: pointer;
@@ -275,7 +286,7 @@ footer {
 
 .footer-bottom .heart { color: #e53e3e; }
 
-/* ── DARK MODE ── */
+/* DARK MODE (legacy body.dark support) */
 body.dark {
     background: #0f0f0f;
     color: #eee;
@@ -300,8 +311,135 @@ body.dark .footer-col h4,
 body.dark .footer-bottom { color: #ddd; }
 body.dark .icon-btn { color: #aaa; }
 
+/* RESPONSIVE */
 @media (max-width: 768px) {
-    .top-bar, .main-nav { padding: 12px 20px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-    footer { padding: 40px 20px 20px; }
+    .top-bar {
+        padding: 12px 20px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .top-bar-actions {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        gap: 0;
+        padding: 0;
+        padding-top: 50px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        border: none;
+    }
+
+    .main-nav.active {
+        max-height: 400px;
+        padding: 50px 20px 16px 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .main-nav a {
+        width: 100%;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .main-nav a:last-child {
+        border-bottom: none;
+    }
+
+    .hero {
+        padding: 60px 20px;
+        min-height: auto;
+    }
+
+    .hero h1 { font-size: 36px; }
+    .hero p { font-size: 16px; }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .btn-browse,
+    .btn-learn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    footer {
+        padding: 40px 20px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text { font-size: 18px; }
+
+    .logo-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .btn-login,
+    .btn-signup {
+        font-size: 13px;
+        padding: 6px 16px;
+    }
+
+    .icon-btn {
+        font-size: 16px;
+        padding: 2px 4px;
+    }
+
+    .main-nav a { font-size: 14px; }
+
+    .hero-badge {
+        font-size: 12px;
+        padding: 6px 16px;
+    }
+
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 15px; }
+
+    .btn-browse,
+    .btn-learn {
+        font-size: 14px;
+        padding: 12px 24px;
+    }
+
+    .footer-col h4 { font-size: 15px; }
+
+    .footer-col ul li a,
+    .footer-brand p,
+    .contact-email {
+        font-size: 14px;
+    }
+
+    .footer-bottom { font-size: 13px; }
+}
+
+@media (min-width: 1400px) {
+    .top-bar,
+    .main-nav {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+
+    footer {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
 }

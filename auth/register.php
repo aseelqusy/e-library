@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Library — Create Account</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="stylesheet" href="../assets/css/register-animations.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode-auth.css">
+
+
+    <!-- Initialize dark mode before page renders to prevent flash -->
+    <script>
+        (function() {
+            const DARK_MODE_KEY = 'elibrary-dark-mode';
+            const isDarkMode = localStorage.getItem(DARK_MODE_KEY) === 'true';
+            if (isDarkMode) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 
     <script src="../assets/js/auth.js" defer></script>
 </head>
 <body>
+
 
 <!-- ─── LEFT PANEL ─── -->
 <div class="left-panel">
@@ -19,6 +33,24 @@
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
     <div class="blob blob-4"></div>
+
+    <!-- Flying books background -->
+    <div class="flying-books">
+        <div class="flying-book">📕</div>
+        <div class="flying-book">📗</div>
+        <div class="flying-book">📘</div>
+        <div class="flying-book">📙</div>
+        <div class="flying-book">📔</div>
+    </div>
+
+    <!-- Sparkles -->
+    <div class="sparkles">
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+    </div>
 
     <div class="left-content">
 
@@ -262,14 +294,16 @@
 
         <!-- Already have account -->
         <div class="login-link" id="login-redirect">
-            Already have an account? <a href="#">Log In</a>
+            Already have an account? <a href="login.php">Log In</a>
         </div>
 
     </div>
 
 </div>
 
+
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/dark-mode.js"></script>
+
 </body>
-
 </html>
-

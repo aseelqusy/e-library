@@ -1,0 +1,141 @@
+/* Flying books animation */
+.flying-books {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 52%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.flying-book {
+    position: absolute;
+    font-size: 32px;
+    opacity: 0;
+    animation: flyBook 15s linear infinite;
+}
+
+.flying-book:nth-child(1) { left: 10%; animation-delay: 0s; }
+.flying-book:nth-child(2) { left: 30%; animation-delay: 3s; font-size: 28px; }
+.flying-book:nth-child(3) { left: 50%; animation-delay: 6s; font-size: 36px; }
+.flying-book:nth-child(4) { left: 70%; animation-delay: 9s; font-size: 30px; }
+.flying-book:nth-child(5) { left: 85%; animation-delay: 12s; font-size: 34px; }
+
+@keyframes flyBook {
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Reading character animation */
+.reading-character {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 32px;
+    position: relative;
+    animation: fadeSlideUp 0.8s ease 0.3s both;
+}
+
+.character-body {
+    width: 80px;
+    height: 100px;
+    background: linear-gradient(145deg, #a855f7, #ec4899);
+    border-radius: 40px 40px 20px 20px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: breathe 3s ease-in-out infinite;
+}
+
+.character-head {
+    width: 50px;
+    height: 50px;
+    background: #fbbf24;
+    border-radius: 50%;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid rgba(255,255,255,0.3);
+}
+
+.character-book {
+    width: 60px;
+    height: 45px;
+    background: white;
+    border-radius: 4px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%) rotateX(10deg);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    animation: readBook 2s ease-in-out infinite;
+}
+
+.character-book::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e5e7eb;
+}
+
+.character-book::after {
+    content: '📖';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+
+@keyframes breathe {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.02); }
+}
+
+@keyframes readBook {
+    0%, 100% { transform: translateX(-50%) rotateX(10deg); }
+    50% { transform: translateX(-50%) rotateX(15deg); }
+}
+
+/* Sparkle effect */
+.sparkles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 52%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sparkle {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.8);
+    animation: sparkleAnim 3s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; font-size: 12px; }
+.sparkle:nth-child(2) { top: 25%; right: 15%; animation-delay: 0.5s; font-size: 16px; }
+.sparkle:nth-child(3) { top: 60%; left: 10%; animation-delay: 1s; font-size: 14px; }
+.sparkle:nth-child(4) { top: 70%; right: 20%; animation-delay: 1.5s; font-size: 10px; }
+.sparkle:nth-child(5) { top: 40%; left: 50%; animation-delay: 2s; font-size: 18px; }
+
+@keyframes sparkleAnim {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+

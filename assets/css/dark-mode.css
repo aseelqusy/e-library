@@ -1,0 +1,149 @@
+/* Dark Mode Styles - Main Site */
+
+:root[data-theme="dark"] {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --text-primary: #f5f5f5;
+    --text-secondary: #b0b0b0;
+    --border-color: #2a2a2a;
+    --card-bg: #1a1a1a;
+    --input-bg: #242424;
+}
+
+/* General Dark Mode */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+:root[data-theme="dark"] body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Top Bar */
+:root[data-theme="dark"] .top-bar {
+    background: var(--bg-secondary);
+    border-bottom-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .logo-text {
+    background: linear-gradient(to right, #7c3aed, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+:root[data-theme="dark"] .icon-btn,
+:root[data-theme="dark"] .btn-login {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .icon-btn:hover,
+:root[data-theme="dark"] .btn-login:hover {
+    color: #7c3aed;
+}
+
+/* Navigation */
+:root[data-theme="dark"] .main-nav {
+    background: var(--bg-secondary);
+    border-bottom-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .main-nav a {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .main-nav a:hover,
+:root[data-theme="dark"] .main-nav a.active {
+    color: #7c3aed;
+}
+
+/* Hero Section */
+:root[data-theme="dark"] .hero {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="dark"] .hero h1 {
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .hero p {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .hero-badge {
+    background: rgba(124, 58, 237, 0.15);
+    border-color: rgba(124, 58, 237, 0.3);
+    color: #a78bfa;
+}
+
+:root[data-theme="dark"] .btn-learn {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    color: #a78bfa;
+}
+
+:root[data-theme="dark"] .btn-learn:hover {
+    border-color: #7c3aed;
+}
+
+/* Footer */
+:root[data-theme="dark"] footer {
+    background: var(--bg-secondary);
+    border-top-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .footer-brand p,
+:root[data-theme="dark"] .footer-col ul li a,
+:root[data-theme="dark"] .contact-email {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .footer-col h4,
+:root[data-theme="dark"] .footer-bottom {
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .footer-col ul li a:hover {
+    color: #7c3aed;
+}
+
+:root[data-theme="dark"] .social-btn {
+    background: var(--input-bg);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .social-btn:hover {
+    background: #7c3aed;
+    color: white;
+}
+
+/* Mobile Menu */
+:root[data-theme="dark"] .mobile-menu-toggle {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .mobile-menu-toggle:hover {
+    color: #7c3aed;
+}
+
+:root[data-theme="dark"] .main-nav a {
+    border-bottom-color: var(--border-color);
+}
+
+/* Scrollbar */
+:root[data-theme="dark"] ::-webkit-scrollbar {
+    width: 10px;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 5px;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: #7c3aed;
+}
