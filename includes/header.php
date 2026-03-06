@@ -11,17 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>E-Library</title>
 
     <!-- Set theme before stylesheets to avoid flash -->
-    <script>
-        (function () {
-            try {
-                if (localStorage.getItem('elibrary-dark-mode') === 'true') {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                }
-            } catch (e) {
-                // Ignore storage access errors and keep default theme.
-            }
-        })();
-    </script>
+    <script src="/library_project/assets/js/theme-init.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>

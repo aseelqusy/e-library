@@ -10,15 +10,7 @@
     <link rel="stylesheet" href="../assets/css/dark-mode-auth.css">
 
     <!-- Initialize dark mode before page renders to prevent flash -->
-    <script>
-        (function() {
-            const DARK_MODE_KEY = 'elibrary-dark-mode';
-            const isDarkMode = localStorage.getItem(DARK_MODE_KEY) === 'true';
-            if (isDarkMode) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        })();
-    </script>
+    <script src="../assets/js/theme-init.js"></script>
 </head>
 <body>
 
@@ -153,13 +145,13 @@
                 <div class="input-wrap">
                     <span class="i-icon">🔒</span>
                     <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
-                    <button class="toggle-pass" onclick="toggleLoginPassword(event)" type="button">👁️</button>
+                    <button class="toggle-pass" data-login-toggle="true" type="button">👁️</button>
                 </div>
             </div>
 
             <div class="terms-row" style="justify-content: space-between; margin-bottom: 24px;">
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <div class="custom-check" id="remember-check" onclick="this.classList.toggle('checked')"></div>
+                    <div class="custom-check" id="remember-check"></div>
                     <div class="terms-text" style="margin: 0;">Remember me</div>
                 </div>
                 <a href="#" class="terms-text" style="color: var(--purple); font-weight: 600; text-decoration: none; margin: 0;">Forgot password?</a>

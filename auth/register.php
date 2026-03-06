@@ -12,15 +12,7 @@
 
 
     <!-- Initialize dark mode before page renders to prevent flash -->
-    <script>
-        (function() {
-            const DARK_MODE_KEY = 'elibrary-dark-mode';
-            const isDarkMode = localStorage.getItem(DARK_MODE_KEY) === 'true';
-            if (isDarkMode) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        })();
-    </script>
+    <script src="../assets/js/theme-init.js"></script>
 
     <script src="../assets/js/auth.js" defer></script>
 </head>
@@ -172,14 +164,14 @@
                     <label>First Name</label>
                     <div class="input-wrap">
                         <span class="i-icon">👤</span>
-                        <input type="text" id="fname" name="first_name" placeholder="Jane" oninput="validateField(this)">
+                        <input type="text" id="fname" name="first_name" placeholder="Jane" class="js-validate-field">
                     </div>
                 </div>
                 <div class="field">
                     <label>Last Name</label>
                     <div class="input-wrap">
                         <span class="i-icon">👤</span>
-                        <input type="text" id="lname" name="last_name" placeholder="Doe" oninput="validateField(this)">
+                        <input type="text" id="lname" name="last_name" placeholder="Doe" class="js-validate-field">
                     </div>
                 </div>
             </div>
@@ -187,18 +179,18 @@
                 <label>Email Address</label>
                 <div class="input-wrap">
                     <span class="i-icon">✉️</span>
-                    <input type="email" id="email" name="email" placeholder="jane@example.com" oninput="validateEmail(this)">
+                    <input type="email" id="email" name="email" placeholder="jane@example.com">
                 </div>
             </div>
             <div class="field">
                 <label>Username</label>
                 <div class="input-wrap">
                     <span class="i-icon">🔖</span>
-                    <input type="text" id="username" name="username" placeholder="jane_reads" oninput="validateField(this)">
+                    <input type="text" id="username" name="username" placeholder="jane_reads" class="js-validate-field">
                 </div>
             </div>
             <div class="nav-btns">
-                <button class="btn-next" onclick="goStep(2)">Continue →</button>
+                <button class="btn-next" data-go-step="2" type="button">Continue →</button>
             </div>
         </div>
 
@@ -208,8 +200,8 @@
                 <label>Password</label>
                 <div class="input-wrap">
                     <span class="i-icon">🔒</span>
-                    <input type="password" id="password" name="password" placeholder="Create a strong password" oninput="checkStrength(this.value)">
-                    <button class="toggle-pass" onclick="togglePw('password', this)" type="button">👁️</button>
+                    <input type="password" id="password" name="password" placeholder="Create a strong password">
+                    <button class="toggle-pass" data-toggle-password="password" type="button">👁️</button>
                 </div>
                 <div class="strength-bar">
                     <div class="strength-seg" id="s1"></div>
@@ -223,8 +215,8 @@
                 <label>Confirm Password</label>
                 <div class="input-wrap">
                     <span class="i-icon">🔒</span>
-                    <input type="password" id="confirm-pw" placeholder="Repeat your password" oninput="validateConfirm(this)">
-                    <button class="toggle-pass" onclick="togglePw('confirm-pw', this)" type="button">👁️</button>
+                    <input type="password" id="confirm-pw" placeholder="Repeat your password">
+                    <button class="toggle-pass" data-toggle-password="confirm-pw" type="button">👁️</button>
                 </div>
             </div>
             <div class="field">
@@ -235,8 +227,8 @@
                 </div>
             </div>
             <div class="nav-btns">
-                <button class="btn-back" onclick="goStep(1)">← Back</button>
-                <button class="btn-next" onclick="goStep(3)">Continue →</button>
+                <button class="btn-back" data-go-step="1" type="button">← Back</button>
+                <button class="btn-next" data-go-step="3" type="button">Continue →</button>
             </div>
         </div>
 
@@ -246,14 +238,14 @@
                 <label>Favorite Genre</label>
                 <div class="input-wrap">
                     <span class="i-icon">🏷️</span>
-                    <input type="text" name="favorite_genre" placeholder="Fiction, Science, Technology..." oninput="validateField(this)" style="padding-left:42px;">
+                    <input type="text" name="favorite_genre" placeholder="Fiction, Science, Technology..." class="js-validate-field" style="padding-left:42px;">
                 </div>
             </div>
             <div class="field">
                 <label>How did you hear about us?</label>
                 <div class="input-wrap" style="position:relative;">
                     <span class="i-icon" style="z-index:2;">📣</span>
-                    <select name="heard_about" style="width:100%;padding:11px 14px 11px 42px;border:1.5px solid var(--border);border-radius:12px;background:var(--input-bg);font-family:inherit;font-size:14px;color:var(--text);outline:none;appearance:none;cursor:pointer;transition:border .2s;" onfocus="this.style.borderColor='var(--purple)';this.style.boxShadow='0 0 0 3px #ede9fe'" onblur="this.style.borderColor='var(--border)';this.style.boxShadow=''">
+                    <select id="heard-about" name="heard_about" style="width:100%;padding:11px 14px 11px 42px;border:1.5px solid var(--border);border-radius:12px;background:var(--input-bg);font-family:inherit;font-size:14px;color:var(--text);outline:none;appearance:none;cursor:pointer;transition:border .2s;">
                         <option value="">Select an option</option>
                         <option>Search engine</option>
                         <option>Social media</option>
@@ -265,13 +257,13 @@
             </div>
 
             <div class="terms-row">
-                <div class="custom-check" id="terms-check" onclick="this.classList.toggle('checked')"></div>
+                <div class="custom-check" id="terms-check"></div>
                 <div class="terms-text">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> of E-Library.</div>
             </div>
 
             <div class="nav-btns" id="submit-btns">
-                <button class="btn-back" onclick="goStep(2)">← Back</button>
-                <button class="btn-next" onclick="submitForm()" style="display:flex;align-items:center;justify-content:center;gap:8px;">
+                <button class="btn-back" data-go-step="2" type="button">← Back</button>
+                <button class="btn-next" data-submit-form="true" type="button" style="display:flex;align-items:center;justify-content:center;gap:8px;">
                     <span>🚀</span> Create Account
                 </button>
             </div>
@@ -284,7 +276,7 @@
             <div class="success-icon">🎉</div>
             <h2>Welcome to <span>E-Library!</span></h2>
             <p>Your account has been created successfully. Start exploring thousands of books, journals, and resources — all free.</p>
-            <button class="submit-btn" onclick="window.location.href='#'">
+            <button class="submit-btn" id="success-start-reading" type="button">
                 <span>📚 Start Reading Now</span>
             </button>
             <div class="login-link" style="margin-top:16px;">
@@ -302,7 +294,6 @@
 </div>
 
 
-<script src="../assets/js/auth.js"></script>
 <script src="../assets/js/dark-mode.js"></script>
 
 </body>

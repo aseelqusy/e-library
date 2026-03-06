@@ -438,14 +438,75 @@ body {
 }
 
 /* Responsive */
+
+/* Desktop (900px+) - Show left panel, hide form */
+@media (min-width: 900px) {
+    .left-panel {
+        display: flex;
+        width: 52%;
+        min-height: 100vh;
+    }
+    .right-panel {
+        display: flex;
+        flex: 1;
+    }
+}
+
+/* Tablet & Mobile (below 900px) - Hide left panel, show form */
 @media (max-width: 900px) {
     body { flex-direction: column; overflow: auto; }
-    .left-panel { width: 100%; min-height: auto; padding: 40px 24px 32px; }
+    .left-panel {
+        display: none;
+        width: 100%;
+        min-height: auto;
+        padding: 40px 24px 32px;
+    }
     .book-stack { margin-bottom: 20px; }
     .panel-headline h2 { font-size: 22px; }
-    .right-panel { padding: 40px 24px; width: 100%; }
+    .right-panel {
+        display: flex;
+        padding: 40px 24px;
+        width: 100%;
+        min-height: auto;
+        justify-content: center;
+    }
     .form-wrapper { max-width: 100%; }
     .flying-books, .sparkles { width: 100%; }
     .flying_books, .sparkles { width: 100%; }
     .left-panel::before { width: 100%; }
 }
+
+/* Extra small mobile (below 576px) - Optimize form for small screens */
+@media (max-width: 576px) {
+    .right-panel {
+        padding: 24px 16px;
+    }
+    .form-wrapper {
+        max-width: 100%;
+    }
+    .form-top h1 {
+        font-size: 24px;
+    }
+    .form-top p {
+        font-size: 13px;
+    }
+    .social-auth {
+        grid-template-columns: 1fr 1fr;
+    }
+    .social-btn {
+        padding: 9px;
+        font-size: 12px;
+    }
+    .field label {
+        font-size: 11px;
+    }
+    .input-wrap input {
+        padding: 10px 12px 10px 38px;
+        font-size: 13px;
+    }
+    .submit-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
