@@ -98,18 +98,15 @@ function submitForm() {
         return;
     }
 
-    document.querySelectorAll('.step-fields').forEach((f) => {
-        f.style.display = 'none';
-    });
+    const acceptTerms = document.getElementById('accept-terms');
+    if (acceptTerms) {
+        acceptTerms.value = '1';
+    }
 
-    const steps = document.querySelector('.steps');
-    if (steps) steps.style.display = 'none';
-
-    const loginRedirect = document.getElementById('login-redirect');
-    if (loginRedirect) loginRedirect.style.display = 'none';
-
-    const successScreen = document.getElementById('success-screen');
-    if (successScreen) successScreen.style.display = 'block';
+    const form = document.getElementById('registerForm');
+    if (form) {
+        form.submit();
+    }
 }
 
 function initRegisterPage() {

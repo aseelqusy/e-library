@@ -16,7 +16,8 @@
 
         <?php if(isset($_SESSION['user_id'])): ?>
 
-            <a href="/library_project/dashboard/dashboard.php" class="btn-login">
+            <?php $dashboardLink = (($_SESSION['role'] ?? 'user') === 'admin') ? '/library_project/dashboard/dashboard.php' : '/library_project/dashboard/profile.php'; ?>
+            <a href="<?php echo $dashboardLink; ?>" class="btn-login">
                 Dashboard
             </a>
 
@@ -54,7 +55,8 @@
     <!-- Mobile-only auth links -->
     <div class="mobile-auth-links">
         <?php if(isset($_SESSION['user_id'])): ?>
-            <a href="/library_project/dashboard/dashboard.php" class="mobile-auth-link">
+            <?php $dashboardLink = (($_SESSION['role'] ?? 'user') === 'admin') ? '/library_project/dashboard/dashboard.php' : '/library_project/dashboard/profile.php'; ?>
+            <a href="<?php echo $dashboardLink; ?>" class="mobile-auth-link">
                 <i class="fas fa-home"></i> Dashboard
             </a>
             <a href="/library_project/auth/logout.php" class="mobile-auth-link" style="color: #ef4444;">

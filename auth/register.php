@@ -1,3 +1,61 @@
+<?php
+session_start();
+require_once '../includes/db.php';
+
+if (!($conn instanceof mysqli)) {
+    die('Database connection is not available.');
+}
+
+$registerError = '';
+$old = [
+    'first_name' => '',
+    'last_name' => '',
+    'email' => '',
+    'username' => '',
+    'dob' => '',
+    'favorite_genre' => '',
+    'heard_about' => '',
+];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    foreach ($old as $key => $value) {
+        $old[$key] = trim($_POST[$key] ?? '');
+    }
+
+    $password = (string) ($_POST['password'] ?? '');
+    $confirmPassword = (string) ($_POST['confirm_password'] ?? '');
+
+    if ($old['username'] === '' || $old['email'] === '' || $password === '') {
+        $registerError = 'Please fill username, email, and password.';
+    } elseif (!filter_var($old['email'], FILTER_VALIDATE_EMAIL)) {
+        $registerError = 'Please enter a valid email address.';
+    } elseif (strlen($password) < 6) {
+        $registerError = 'Password must be at least 6 characters.';
+    } elseif ($password !== $confirmPassword) {
+        $registerError = 'Password and confirm password do not match.';
+    } else {
+        $dupStmt = mysqli_prepare($conn, 'SELECT id FROM users WHERE email = ? OR username = ? LIMIT 1');
+        mysqli_stmt_bind_param($dupStmt, 'ss', $old['email'], $old['username']);
+        mysqli_stmt_execute($dupStmt);
+        $dupResult = mysqli_stmt_get_result($dupStmt);
+
+        if ($dupResult && mysqli_num_rows($dupResult) > 0) {
+            $registerError = 'Email or username is already registered.';
+        } else {
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+            $insertStmt = mysqli_prepare($conn, "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, 'user')");
+            mysqli_stmt_bind_param($insertStmt, 'sss', $old['username'], $old['email'], $passwordHash);
+
+            if (mysqli_stmt_execute($insertStmt)) {
+                header('Location: login.php?registered=1');
+                exit();
+            }
+
+            $registerError = 'Registration failed. Please try again.';
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,6 +191,13 @@
             <p>Start reading in less than 2 minutes.</p>
         </div>
 
+        <?php if ($registerError !== ''): ?>
+            <div style="padding: 12px 14px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.35); border-radius: 10px; margin-bottom: 14px; color: #b91c1c; font-size: 14px;">
+                <?php echo htmlspecialchars($registerError); ?>
+            </div>
+        <?php endif; ?>
+
+        <form id="registerForm" method="POST" action="">
         <!-- Step progress -->
         <div class="steps">
             <div class="step">
@@ -164,14 +229,14 @@
                     <label>First Name</label>
                     <div class="input-wrap">
                         <span class="i-icon">👤</span>
-                        <input type="text" id="fname" name="first_name" placeholder="Jane" class="js-validate-field">
+                        <input type="text" id="fname" name="first_name" placeholder="Jane" class="js-validate-field" value="<?php echo htmlspecialchars($old['first_name']); ?>">
                     </div>
                 </div>
                 <div class="field">
                     <label>Last Name</label>
                     <div class="input-wrap">
                         <span class="i-icon">👤</span>
-                        <input type="text" id="lname" name="last_name" placeholder="Doe" class="js-validate-field">
+                        <input type="text" id="lname" name="last_name" placeholder="Doe" class="js-validate-field" value="<?php echo htmlspecialchars($old['last_name']); ?>">
                     </div>
                 </div>
             </div>
@@ -179,14 +244,14 @@
                 <label>Email Address</label>
                 <div class="input-wrap">
                     <span class="i-icon">✉️</span>
-                    <input type="email" id="email" name="email" placeholder="jane@example.com">
+                    <input type="email" id="email" name="email" placeholder="jane@example.com" value="<?php echo htmlspecialchars($old['email']); ?>">
                 </div>
             </div>
             <div class="field">
                 <label>Username</label>
                 <div class="input-wrap">
                     <span class="i-icon">🔖</span>
-                    <input type="text" id="username" name="username" placeholder="jane_reads" class="js-validate-field">
+                    <input type="text" id="username" name="username" placeholder="jane_reads" class="js-validate-field" value="<?php echo htmlspecialchars($old['username']); ?>">
                 </div>
             </div>
             <div class="nav-btns">
@@ -215,7 +280,7 @@
                 <label>Confirm Password</label>
                 <div class="input-wrap">
                     <span class="i-icon">🔒</span>
-                    <input type="password" id="confirm-pw" placeholder="Repeat your password">
+                    <input type="password" id="confirm-pw" name="confirm_password" placeholder="Repeat your password">
                     <button class="toggle-pass" data-toggle-password="confirm-pw" type="button">👁️</button>
                 </div>
             </div>
@@ -223,7 +288,7 @@
                 <label>Date of Birth</label>
                 <div class="input-wrap">
                     <span class="i-icon">🎂</span>
-                    <input type="date" id="dob" name="dob"  style="padding-left:42px;">
+                    <input type="date" id="dob" name="dob" style="padding-left:42px;" value="<?php echo htmlspecialchars($old['dob']); ?>">
                 </div>
             </div>
             <div class="nav-btns">
@@ -238,7 +303,7 @@
                 <label>Favorite Genre</label>
                 <div class="input-wrap">
                     <span class="i-icon">🏷️</span>
-                    <input type="text" name="favorite_genre" placeholder="Fiction, Science, Technology..." class="js-validate-field" style="padding-left:42px;">
+                    <input type="text" name="favorite_genre" placeholder="Fiction, Science, Technology..." class="js-validate-field" style="padding-left:42px;" value="<?php echo htmlspecialchars($old['favorite_genre']); ?>">
                 </div>
             </div>
             <div class="field">
@@ -247,11 +312,11 @@
                     <span class="i-icon" style="z-index:2;">📣</span>
                     <select id="heard-about" name="heard_about" style="width:100%;padding:11px 14px 11px 42px;border:1.5px solid var(--border);border-radius:12px;background:var(--input-bg);font-family:inherit;font-size:14px;color:var(--text);outline:none;appearance:none;cursor:pointer;transition:border .2s;">
                         <option value="">Select an option</option>
-                        <option>Search engine</option>
-                        <option>Social media</option>
-                        <option>Friend or colleague</option>
-                        <option>Advertisement</option>
-                        <option>Other</option>
+                        <option <?php echo $old['heard_about'] === 'Search engine' ? 'selected' : ''; ?>>Search engine</option>
+                        <option <?php echo $old['heard_about'] === 'Social media' ? 'selected' : ''; ?>>Social media</option>
+                        <option <?php echo $old['heard_about'] === 'Friend or colleague' ? 'selected' : ''; ?>>Friend or colleague</option>
+                        <option <?php echo $old['heard_about'] === 'Advertisement' ? 'selected' : ''; ?>>Advertisement</option>
+                        <option <?php echo $old['heard_about'] === 'Other' ? 'selected' : ''; ?>>Other</option>
                     </select>
                 </div>
             </div>
@@ -260,6 +325,8 @@
                 <div class="custom-check" id="terms-check"></div>
                 <div class="terms-text">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> of E-Library.</div>
             </div>
+
+            <input type="hidden" name="accept_terms" id="accept-terms" value="0">
 
             <div class="nav-btns" id="submit-btns">
                 <button class="btn-back" data-go-step="2" type="button">← Back</button>
@@ -288,6 +355,7 @@
         <div class="login-link" id="login-redirect">
             Already have an account? <a href="login.php">Log In</a>
         </div>
+        </form>
 
     </div>
 

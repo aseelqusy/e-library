@@ -1,14 +1,15 @@
 <?php
-// includes/db.php
-$host = "localhost";
-$user = "root";
-$pass = "";          // put your XAMPP MySQL password if you set one
-$db   = "library-db"; // database name
+// Direct DB bootstrap used by auth/dashboard pages.
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$db = 'library-db';
 
 $conn = mysqli_connect($host, $user, $pass, $db);
-
 if (!$conn) {
-    die("DB Connection failed: " . mysqli_connect_error());
+    die('DB Connection failed: ' . mysqli_connect_error());
 }
 
-mysqli_set_charset($conn, "utf8mb4");
+mysqli_set_charset($conn, 'utf8mb4');
+
+

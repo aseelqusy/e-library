@@ -60,23 +60,15 @@ function initLoginPage() {
         });
     });
 
-    // Form submission (placeholder logic).
+    // Let the form submit to backend (no preventDefault placeholder).
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
-        loginForm.addEventListener('submit', function (e) {
-            e.preventDefault();
+        loginForm.addEventListener('submit', function () {
             const btn = this.querySelector('.submit-btn');
-            if (!btn) return;
+            if (!btn || btn.disabled) return;
 
-            const originalContent = btn.innerHTML;
             btn.innerHTML = '<span>⏳ Logging in...</span>';
             btn.disabled = true;
-
-            setTimeout(() => {
-                btn.innerHTML = originalContent;
-                btn.disabled = false;
-                alert('Login form submitted! Connect this to your backend.');
-            }, 1500);
         });
     }
 }

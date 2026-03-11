@@ -1,0 +1,10 @@
+{
+    "library_name": "E-Library",
+    "contact_email": "info@elibrary.com",
+    "max_borrow_days": 14,
+    "max_books_per_user": 3,
+    "allow_registration": true,
+    "enable_reviews": true,
+    "maintenance_mode": false,
+    "default_theme": "dark"
+}
