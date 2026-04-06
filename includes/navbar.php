@@ -43,14 +43,20 @@
     </div>
 </header>
 
+<?php
+$currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '';
+$isHomePage = ($currentPath === '/library_project/index.php' || $currentPath === '/library_project/');
+$isCategoriesPage = ($currentPath === '/library_project/pages/categories.php');
+$isAboutPage = ($currentPath === '/library_project/pages/about.php');
+$isContactPage = ($currentPath === '/library_project/pages/contact.php');
+?>
+
 <!-- MAIN NAV -->
 <nav class="main-nav" id="mainNav">
-    <a href="/library_project/index.php" class="active">Home</a>
-    <a href="/library_project/books/brows.php">Books</a>
-    <a href="/library_project/books/search.php">Browse</a>
-    <a href="/library_project/pages/categories.php">Categories</a>
-    <a href="/library_project/pages/about.php">About</a>
-    <a href="/library_project/pages/contact.php">Contact</a>
+    <a href="/library_project/index.php" class="<?php echo $isHomePage ? 'active' : ''; ?>">Home</a>
+    <a href="/library_project/pages/categories.php" class="<?php echo $isCategoriesPage ? 'active' : ''; ?>">Categories</a>
+    <a href="/library_project/pages/about.php" class="<?php echo $isAboutPage ? 'active' : ''; ?>">About</a>
+    <a href="/library_project/pages/contact.php" class="<?php echo $isContactPage ? 'active' : ''; ?>">Contact</a>
 
     <!-- Mobile-only auth links -->
     <div class="mobile-auth-links">

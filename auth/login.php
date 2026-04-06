@@ -249,16 +249,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <?php endif; ?>
 
-        <?php if ($isLocalRequest): ?>
-            <div style="margin-bottom: 16px; padding: 12px; border-radius: 10px; border: 1px dashed rgba(124, 58, 237, 0.35); background: rgba(124, 58, 237, 0.06);">
-                <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px;">Admin UI Preview (Local Only)</div>
-                <div class="d-flex gap-2 flex-wrap">
-                    <a class="social-btn" style="text-decoration:none;" href="?preview_admin=1">Quick Preview Login</a>
-                    <button class="social-btn" type="button" onclick="document.getElementById('login-email').value='admin-preview';document.getElementById('login-password').value='preview123';">Fill Preview Credentials</button>
-                </div>
-                <div style="font-size: 12px; margin-top: 8px; opacity: 0.85;">Username: <strong>admin-preview</strong> | Password: <strong>preview123</strong></div>
-            </div>
-        <?php endif; ?>
+
 
         <?php if ($error_message): ?>
         <div style="padding: 14px 18px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 10px; margin-bottom: 20px;">

@@ -3,8 +3,8 @@ session_start();
 ?>
 <?php include('includes/header.php'); ?>
 
-    <link rel="stylesheet" href="/library_project/assets/css/index-style.css">
-    <link rel="stylesheet" href="/library_project/assets/css/dark-mode.css">
+<link rel="stylesheet" href="/library_project/assets/css/index-style.css">
+<link rel="stylesheet" href="/library_project/assets/css/dark-mode.css">
 
 </head>
 <body>
@@ -86,9 +86,9 @@ session_start();
             <a href="/library_project/auth/register.php" class="btn-primary">
                 Get Started <i class="fa-solid fa-arrow-right"></i>
             </a>
-            <button class="btn-secondary">
+            <a href="/library_project/pages/about.php" class="btn-secondary">
                 Learn More
-            </button>
+            </a>
         </div>
 
         <!-- Quick tip -->
