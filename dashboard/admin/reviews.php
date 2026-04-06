@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../includes/admin-layout.php';
+require_once __DIR__ . '/../../includes/admin-layout.php';
 
 admin_require_admin();
 $conn = admin_db();
@@ -13,7 +13,7 @@ if (isset($_GET['delete'])) {
         admin_set_toast('Review deleted.', 'success');
     }
 
-    header('Location: /library_project/dashboard/reviews.php');
+    header('Location: /library_project/dashboard/admin/reviews.php');
     exit();
 }
 

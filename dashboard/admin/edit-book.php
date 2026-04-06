@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../includes/admin-layout.php';
+require_once __DIR__ . '/../../includes/admin-layout.php';
 
 admin_require_admin();
 $conn = admin_db();
@@ -7,7 +7,7 @@ $conn = admin_db();
 $id = (int) ($_GET['id'] ?? 0);
 if ($id <= 0) {
     admin_set_toast('Invalid book selected.', 'error');
-    header('Location: /library_project/dashboard/books.php');
+    header('Location: /library_project/dashboard/admin/books.php');
     exit();
 }
 
@@ -25,7 +25,7 @@ $book = mysqli_fetch_assoc($result);
 
 if (!$book) {
     admin_set_toast('Book not found.', 'error');
-    header('Location: /library_project/dashboard/books.php');
+    header('Location: /library_project/dashboard/admin/books.php');
     exit();
 }
 
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $coverPath = $book['image'];
     if (!empty($_FILES['cover_image']['name']) && ($_FILES['cover_image']['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK) {
-        $uploadDir = __DIR__ . '/../assets/uploads/books';
+        $uploadDir = __DIR__ . '/../../assets/uploads/books';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $pdfPath = $book['pdf_path'] ?? null;
     if (!empty($_FILES['pdf_file']['name']) && ($_FILES['pdf_file']['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK) {
-        $pdfDir = __DIR__ . '/../assets/uploads/pdfs';
+        $pdfDir = __DIR__ . '/../../assets/uploads/pdfs';
         if (!is_dir($pdfDir)) {
             mkdir($pdfDir, 0777, true);
         }
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_execute($stockStmt);
 
             admin_set_toast('Book updated successfully.', 'success');
-            header('Location: /library_project/dashboard/books.php');
+            header('Location: /library_project/dashboard/admin/books.php');
             exit();
         }
 
@@ -235,7 +235,7 @@ admin_render_start('Edit Book', 'books', 'Update metadata, assets, and availabil
         </div>
 
         <div class="admin-form-group full d-flex justify-content-end gap-2">
-            <a href="/library_project/dashboard/books.php" class="btn btn-secondary-soft">Back</a>
+            <a href="/library_project/dashboard/admin/books.php" class="btn btn-secondary-soft">Back</a>
             <button type="submit" class="btn btn-primary-soft"><i class="fa-solid fa-pen-to-square"></i> Update Book</button>
         </div>
     </form>

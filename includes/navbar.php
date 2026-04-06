@@ -6,9 +6,6 @@
     </a>
 
     <div class="top-bar-actions">
-        <a href="/library_project/books/search.php" class="icon-btn" title="Search Books">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </a>
 
         <button class="icon-btn" id="themeToggle">
             <i class="fa-solid fa-moon"></i>
@@ -16,7 +13,7 @@
 
         <?php if(isset($_SESSION['user_id'])): ?>
 
-            <?php $dashboardLink = (($_SESSION['role'] ?? 'user') === 'admin') ? '/library_project/dashboard/dashboard.php' : '/library_project/dashboard/profile.php'; ?>
+            <?php $dashboardLink = (($_SESSION['role'] ?? 'user') === 'admin') ? '/library_project/dashboard/admin/index.php' : '/library_project/dashboard/user/dashboard.php'; ?>
             <a href="<?php echo $dashboardLink; ?>" class="btn-login">
                 Dashboard
             </a>
@@ -43,19 +40,25 @@
     </div>
 </header>
 
+<?php
+$currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '';
+$isHomePage = ($currentPath === '/library_project/index.php' || $currentPath === '/library_project/');
+$isCategoriesPage = ($currentPath === '/library_project/pages/categories.php');
+$isAboutPage = ($currentPath === '/library_project/pages/about.php');
+$isContactPage = ($currentPath === '/library_project/pages/contact.php');
+?>
+
 <!-- MAIN NAV -->
 <nav class="main-nav" id="mainNav">
-    <a href="/library_project/index.php" class="active">Home</a>
-    <a href="/library_project/books/brows.php">Books</a>
-    <a href="/library_project/books/search.php">Browse</a>
-    <a href="/library_project/pages/categories.php">Categories</a>
-    <a href="/library_project/pages/about.php">About</a>
-    <a href="/library_project/pages/contact.php">Contact</a>
+    <a href="/library_project/index.php" class="<?php echo $isHomePage ? 'active' : ''; ?>">Home</a>
+    <a href="/library_project/pages/categories.php" class="<?php echo $isCategoriesPage ? 'active' : ''; ?>">Categories</a>
+    <a href="/library_project/pages/about.php" class="<?php echo $isAboutPage ? 'active' : ''; ?>">About</a>
+    <a href="/library_project/pages/contact.php" class="<?php echo $isContactPage ? 'active' : ''; ?>">Contact</a>
 
     <!-- Mobile-only auth links -->
     <div class="mobile-auth-links">
         <?php if(isset($_SESSION['user_id'])): ?>
-            <?php $dashboardLink = (($_SESSION['role'] ?? 'user') === 'admin') ? '/library_project/dashboard/dashboard.php' : '/library_project/dashboard/profile.php'; ?>
+            <?php $dashboardLink = (($_SESSION['role'] ?? 'user') === 'admin') ? '/library_project/dashboard/admin/index.php' : '/library_project/dashboard/user/dashboard.php'; ?>
             <a href="<?php echo $dashboardLink; ?>" class="mobile-auth-link">
                 <i class="fas fa-home"></i> Dashboard
             </a>

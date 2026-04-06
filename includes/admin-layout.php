@@ -24,7 +24,7 @@ function admin_require_admin()
     }
 
     if (($_SESSION['role'] ?? 'user') !== 'admin') {
-        header('Location: /library_project/dashboard/dashboard.php');
+        header('Location: /library_project/dashboard/user/dashboard.php');
         exit();
     }
 }
@@ -70,14 +70,14 @@ function admin_get_toast()
 function admin_sidebar_items()
 {
     return [
-        ['key' => 'dashboard', 'label' => 'Dashboard', 'icon' => 'fa-chart-line', 'href' => '/library_project/dashboard/dashboard.php'],
-        ['key' => 'books', 'label' => 'Books', 'icon' => 'fa-book-open', 'href' => '/library_project/dashboard/books.php'],
-        ['key' => 'categories', 'label' => 'Categories', 'icon' => 'fa-layer-group', 'href' => '/library_project/dashboard/categories.php'],
-        ['key' => 'users', 'label' => 'Users', 'icon' => 'fa-users', 'href' => '/library_project/dashboard/users.php'],
-        ['key' => 'borrow-requests', 'label' => 'Borrow Requests', 'icon' => 'fa-repeat', 'href' => '/library_project/dashboard/borrow-requests.php'],
-        ['key' => 'reviews', 'label' => 'Reviews', 'icon' => 'fa-star', 'href' => '/library_project/dashboard/reviews.php'],
-        ['key' => 'notifications', 'label' => 'Notifications', 'icon' => 'fa-bell', 'href' => '/library_project/dashboard/notifications.php'],
-        ['key' => 'settings', 'label' => 'Settings', 'icon' => 'fa-gear', 'href' => '/library_project/dashboard/settings.php'],
+        ['key' => 'dashboard', 'label' => 'Dashboard', 'icon' => 'fa-chart-line', 'href' => '/library_project/dashboard/admin/index.php'],
+        ['key' => 'books', 'label' => 'Books', 'icon' => 'fa-book-open', 'href' => '/library_project/dashboard/admin/books.php'],
+        ['key' => 'categories', 'label' => 'Categories', 'icon' => 'fa-layer-group', 'href' => '/library_project/dashboard/admin/categories.php'],
+        ['key' => 'users', 'label' => 'Users', 'icon' => 'fa-users', 'href' => '/library_project/dashboard/admin/users.php'],
+        ['key' => 'borrow-requests', 'label' => 'Borrow Requests', 'icon' => 'fa-repeat', 'href' => '/library_project/dashboard/admin/borrow-requests.php'],
+        ['key' => 'reviews', 'label' => 'Reviews', 'icon' => 'fa-star', 'href' => '/library_project/dashboard/admin/reviews.php'],
+        ['key' => 'notifications', 'label' => 'Notifications', 'icon' => 'fa-bell', 'href' => '/library_project/dashboard/admin/notifications.php'],
+        ['key' => 'settings', 'label' => 'Settings', 'icon' => 'fa-gear', 'href' => '/library_project/dashboard/admin/settings.php'],
     ];
 }
 
@@ -150,7 +150,7 @@ function admin_render_start($pageTitle, $activeKey, $subtitle = 'Manage your dig
     echo '        </div>';
     echo '        <div class="admin-topbar-actions">';
     echo '          <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>';
-    echo '          <a href="/library_project/dashboard/notifications.php" class="icon-btn" aria-label="Notifications"><i class="fa-solid fa-bell"></i></a>';
+    echo '          <a href="/library_project/dashboard/admin/notifications.php" class="icon-btn" aria-label="Notifications"><i class="fa-solid fa-bell"></i></a>';
     echo '        </div>';
     echo '      </header>';
     echo '      <main class="admin-content page-fade">';

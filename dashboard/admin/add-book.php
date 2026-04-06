@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../includes/admin-layout.php';
+require_once __DIR__ . '/../../includes/admin-layout.php';
 
 admin_require_admin();
 $conn = admin_db();
@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Author is required.';
     }
 
-    $uploadDir = __DIR__ . '/../assets/uploads/books';
-    $pdfDir = __DIR__ . '/../assets/uploads/pdfs';
+    $uploadDir = __DIR__ . '/../../assets/uploads/books';
+    $pdfDir = __DIR__ . '/../../assets/uploads/pdfs';
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_execute($stockStmt);
 
             admin_set_toast('Book added successfully.', 'success');
-            header('Location: /library_project/dashboard/books.php');
+            header('Location: /library_project/dashboard/admin/books.php');
             exit();
         }
 
@@ -217,7 +217,7 @@ admin_render_start('Add Book', 'books', 'Create a new catalog entry with files a
         </div>
 
         <div class="admin-form-group full d-flex justify-content-end gap-2">
-            <a href="/library_project/dashboard/books.php" class="btn btn-secondary-soft">Cancel</a>
+            <a href="/library_project/dashboard/admin/books.php" class="btn btn-secondary-soft">Cancel</a>
             <button type="submit" class="btn btn-primary-soft"><i class="fa-solid fa-floppy-disk"></i> Save Book</button>
         </div>
     </form>

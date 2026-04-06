@@ -2,9 +2,10 @@
 session_start();
 require_once '../includes/db.php';
 
-if (!($conn instanceof mysqli)) {
+if (!isset($GLOBALS['conn']) || !($GLOBALS['conn'] instanceof mysqli)) {
     die('Database connection is not available.');
 }
+$conn = $GLOBALS['conn'];
 
 function is_local_request()
 {
@@ -29,21 +30,17 @@ if ($isLocalRequest && isset($_GET['preview_admin']) && $_GET['preview_admin'] =
     $_SESSION['email'] = 'preview@local.dev';
     $_SESSION['role'] = 'admin';
     $_SESSION['is_preview_admin'] = true;
-    header('Location: ../dashboard/dashboard.php');
+    header('Location: ../dashboard/admin/index.php');
     exit();
 }
 
-$conn = (isset($conn) && $conn instanceof mysqli) ? $conn : null;
-if ($conn === null) {
-    die('Database connection is not available.');
-}
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
     if (($_SESSION['role'] ?? 'user') === 'admin') {
-        header('Location: ../dashboard/dashboard.php');
+        header('Location: ../dashboard/admin/index.php');
     } else {
-        header('Location: ../dashboard/profile.php');
+        header('Location: ../dashboard/user/profile.php');
     }
     exit();
 }
@@ -62,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['email'] = 'preview@local.dev';
         $_SESSION['role'] = 'admin';
         $_SESSION['is_preview_admin'] = true;
-        header('Location: ../dashboard/dashboard.php');
+        header('Location: ../dashboard/admin/index.php');
         exit();
     }
 
@@ -96,9 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 // Redirect based on role
                 if ($user['role'] == 'admin') {
-                    header('Location: ../dashboard/dashboard.php');
+                    header('Location: ../dashboard/admin/index.php');
                 } else {
-                    header('Location: ../dashboard/profile.php');
+                    header('Location: ../dashboard/user/profile.php');
                 }
                 exit();
             } else {
@@ -244,29 +241,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="or-divider"><span>or log in with email</span></div>
 
         <?php if ($registered_success): ?>
-        <div style="padding: 12px 14px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); border-radius: 10px; margin-bottom: 12px; color: #047857; font-size: 14px;">
-            Account created successfully. You can log in now.
-        </div>
-        <?php endif; ?>
-
-        <?php if ($isLocalRequest): ?>
-            <div style="margin-bottom: 16px; padding: 12px; border-radius: 10px; border: 1px dashed rgba(124, 58, 237, 0.35); background: rgba(124, 58, 237, 0.06);">
-                <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px;">Admin UI Preview (Local Only)</div>
-                <div class="d-flex gap-2 flex-wrap">
-                    <a class="social-btn" style="text-decoration:none;" href="?preview_admin=1">Quick Preview Login</a>
-                    <button class="social-btn" type="button" onclick="document.getElementById('login-email').value='admin-preview';document.getElementById('login-password').value='preview123';">Fill Preview Credentials</button>
-                </div>
-                <div style="font-size: 12px; margin-top: 8px; opacity: 0.85;">Username: <strong>admin-preview</strong> | Password: <strong>preview123</strong></div>
+            <div style="padding: 12px 14px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); border-radius: 10px; margin-bottom: 12px; color: #047857; font-size: 14px;">
+                Account created successfully. You can log in now.
             </div>
         <?php endif; ?>
+
+
 
         <?php if ($error_message): ?>
-        <div style="padding: 14px 18px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 10px; margin-bottom: 20px;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-size: 18px;">⚠️</span>
-                <span style="font-size: 14px; color: #b91c1c; font-weight: 500;"><?php echo htmlspecialchars($error_message); ?></span>
+            <div style="padding: 14px 18px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 10px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">⚠️</span>
+                    <span style="font-size: 14px; color: #b91c1c; font-weight: 500;"><?php echo htmlspecialchars($error_message); ?></span>
+                </div>
             </div>
-        </div>
         <?php endif; ?>
 
         <!-- Login Form -->
@@ -328,4 +316,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </body>
 
 </html>
-

@@ -2,6 +2,19 @@
     --purple: #7c3aed;
     --pink: #ec4899;
     --light-bg: #f5f0eb;
+    --mobile-nav-bg: rgba(255, 255, 255, 0.98);
+    --mobile-nav-link-color: #1f2937;
+    --mobile-nav-link-border: rgba(0, 0, 0, 0.08);
+    --mobile-nav-link-active-bg: rgba(124, 58, 237, 0.12);
+    --mobile-nav-link-active-color: #7c3aed;
+}
+
+:root[data-theme="dark"] {
+    --mobile-nav-bg: rgba(15, 15, 15, 0.98);
+    --mobile-nav-link-color: #f3f4f6;
+    --mobile-nav-link-border: rgba(255, 255, 255, 0.12);
+    --mobile-nav-link-active-bg: rgba(124, 58, 237, 0.2);
+    --mobile-nav-link-active-color: #ec4899;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -95,6 +108,7 @@ body {
 .main-nav {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 36px;
     padding: 12px 48px;
     border-bottom: 1px solid #eee;
@@ -372,7 +386,7 @@ body.dark .icon-btn { color: #aaa; }
         left: 0;
         width: 100%;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.98);
+        background: var(--mobile-nav-bg);
         backdrop-filter: blur(10px);
         z-index: 9999;
         display: flex;
@@ -399,8 +413,8 @@ body.dark .icon-btn { color: #aaa; }
         text-align: center;
         font-size: 20px;
         font-weight: 600;
-        color: white !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--mobile-nav-link-color) !important;
+        border-bottom: 1px solid var(--mobile-nav-link-border);
         display: block;
     }
 
@@ -410,8 +424,8 @@ body.dark .icon-btn { color: #aaa; }
 
     .main-nav a:hover,
     .main-nav a.active {
-        color: var(--pink) !important;
-        background: rgba(124, 58, 237, 0.2);
+        color: var(--mobile-nav-link-active-color) !important;
+        background: var(--mobile-nav-link-active-bg);
     }
 
     /* Show mobile auth links in mobile menu */
@@ -423,7 +437,7 @@ body.dark .icon-btn { color: #aaa; }
         gap: 0;
         margin-top: 20px;
         padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-top: 1px solid var(--mobile-nav-link-border);
     }
 
     .mobile-auth-link {
@@ -432,9 +446,9 @@ body.dark .icon-btn { color: #aaa; }
         text-align: center;
         font-size: 18px;
         font-weight: 600;
-        color: white !important;
+        color: var(--mobile-nav-link-color) !important;
         text-decoration: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid var(--mobile-nav-link-border);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -457,7 +471,7 @@ body.dark .icon-btn { color: #aaa; }
         width: 80%;
         max-width: 400px;
         height: 1px;
-        background: rgba(255, 255, 255, 0.2);
+        background: var(--mobile-nav-link-border);
         margin: 20px 0;
     }
 

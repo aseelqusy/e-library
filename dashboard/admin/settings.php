@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . '/../includes/admin-layout.php';
+require_once __DIR__ . '/../../includes/admin-layout.php';
 
 admin_require_admin();
 
-$settingsPath = __DIR__ . '/../database/admin-settings.json';
+$settingsPath = __DIR__ . '/../../database/admin-settings.json';
 $defaults = [
     'library_name' => 'E-Library',
     'contact_email' => 'info@elibrary.com',
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     file_put_contents($settingsPath, json_encode($settings, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     admin_set_toast('Settings saved successfully.', 'success');
-    header('Location: /library_project/dashboard/settings.php');
+    header('Location: /library_project/dashboard/admin/settings.php');
     exit();
 }
 

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../includes/admin-layout.php';
+require_once __DIR__ . '/../../includes/admin-layout.php';
 
 admin_require_admin();
 $conn = admin_db();
@@ -11,7 +11,7 @@ if (!isset($_SESSION['admin_notifications_read'])) {
 if (isset($_GET['mark']) && $_GET['mark'] === 'all') {
     $_SESSION['admin_notifications_read'] = ['users' => true, 'borrows' => true, 'reviews' => true, 'stock' => true];
     admin_set_toast('All notifications marked as read.', 'success');
-    header('Location: /library_project/dashboard/notifications.php');
+    header('Location: /library_project/dashboard/admin/notifications.php');
     exit();
 }
 
